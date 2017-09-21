@@ -1,5 +1,9 @@
-stage 'Checkout'
- node('slave') {
-  deleteDir()
-  checkout scm
- }
+pipeline {
+    agent { docker 'maven:3.3.3' }
+    stages {
+        stage('Checkout') {
+            deleteDir()
+            checkout scm
+        }
+    }
+}
