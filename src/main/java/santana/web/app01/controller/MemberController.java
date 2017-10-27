@@ -43,10 +43,13 @@ public class MemberController {
     @Produces
     @Named
     private Member newMember;
+    
+    private String serverName;
 
     @PostConstruct
     public void initNewMember() {
         newMember = new Member();
+        serverName = System.getProperty("jboss.server.name");
     }
 
     public void register() throws Exception {
@@ -80,5 +83,13 @@ public class MemberController {
         // This is the root cause message
         return errorMessage;
     }
+
+	public String getServerName() {
+		return serverName;
+	}
+
+	public void setServerName(String serverName) {
+		this.serverName = serverName;
+	}
 
 }
